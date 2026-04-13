@@ -10,12 +10,9 @@ st.set_page_config(page_title="HomeSense AI", page_icon="🏠", layout="wide")
 
 st.markdown("""
 <style>
-/* ── Reset & base ── */
-* { box-sizing: border-box; }
 [data-testid="stAppViewContainer"] { background: #f0f4f8; }
 [data-testid="stHeader"] { display: none; }
 .block-container { padding: 0 !important; max-width: 100% !important; }
-section[data-testid="stSidebar"] { display: none; }
 
 /* ── Navbar ── */
 .navbar {
@@ -24,155 +21,125 @@ section[data-testid="stSidebar"] { display: none; }
     height: 56px;
 }
 .nav-left { display: flex; align-items: center; gap: 10px; }
-.nav-icon {
-    width: 32px; height: 32px; background: #1D9E75;
-    border-radius: 8px; display: flex; align-items: center;
-    justify-content: center; font-size: 16px;
-}
-.nav-logo { font-size: 16px; font-weight: 600; color: #E6F1FB; }
+.nav-icon { width: 32px; height: 32px; background: #1D9E75; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.nav-logo { font-size: 16px; font-weight: 500; color: #E6F1FB; }
 .nav-right { display: flex; align-items: center; gap: 8px; }
 .nav-dot { width: 8px; height: 8px; background: #1D9E75; border-radius: 50%; }
-.nav-tag {
-    font-size: 12px; background: #0C447C; color: #85B7EB;
-    padding: 5px 12px; border-radius: 20px;
-}
+.nav-tag { font-size: 12px; background: #0C447C; color: #85B7EB; padding: 5px 12px; border-radius: 20px; }
 
 /* ── Hero ── */
-.hero {
-    background: #185FA5; padding: 3rem 2rem 2.5rem;
-    text-align: center;
-}
-.hero-eyebrow {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    color: #85B7EB; text-transform: uppercase; margin-bottom: 12px;
-}
-.hero-title {
-    font-size: 36px; font-weight: 700; color: #E6F1FB;
-    margin-bottom: 10px; line-height: 1.2;
-}
-.hero-sub { font-size: 15px; color: #85B7EB; margin-bottom: 1.5rem; }
+.hero { background: #185FA5; padding: 2.5rem 2rem 2rem; text-align: center; }
+.hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    color: #85B7EB; text-transform: uppercase; margin-bottom: 10px; }
+.hero-title { font-size: 32px; font-weight: 500; color: #E6F1FB; margin-bottom: 8px; }
+.hero-sub { font-size: 14px; color: #85B7EB; margin-bottom: 1.25rem; }
 .hero-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.chip {
-    font-size: 13px; padding: 6px 14px; border-radius: 20px;
-    background: #0C447C; color: #B5D4F4;
-}
-.chip-green { background: #085041 !important; color: #9FE1CB !important; }
+.chip { font-size: 12px; padding: 5px 13px; border-radius: 20px; background: #0C447C; color: #B5D4F4; }
+.chip-green { background: #085041; color: #9FE1CB; }
 
 /* ── Metrics bar ── */
-.metrics-bar {
-    background: #042C53;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-}
-.metric {
-    padding: 18px; text-align: center;
-    border-right: 0.5px solid #0C447C;
-}
+.metrics-bar { background: #042C53; display: grid; grid-template-columns: repeat(4, 1fr); }
+.metric { padding: 18px; text-align: center; border-right: 0.5px solid #0C447C; }
 .metric:last-child { border-right: none; }
-.metric-val { font-size: 22px; font-weight: 600; color: #9FE1CB; }
-.metric-label { font-size: 11px; color: #378ADD; margin-top: 4px; }
+.metric-val { font-size: 22px; font-weight: 500; color: #9FE1CB; }
+.metric-label { font-size: 11px; color: #378ADD; margin-top: 3px; }
 
-/* ── Main layout ── */
-.main { max-width: 820px; margin: 0 auto; padding: 1.5rem 1rem; }
+/* ── Content wrapper ── */
+.content-wrap { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem; }
 
-/* ── Section title ── */
-.section-title {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; color: #185FA5; margin-bottom: 10px;
-    display: flex; align-items: center; gap: 8px;
+/* ── Section headers ── */
+.section-header {
+    display: flex; align-items: center; gap: 12px;
+    background: #E6F1FB; border: 0.5px solid #B5D4F4;
+    border-radius: 10px 10px 0 0; padding: 12px 16px;
+    margin-top: 20px;
 }
-.section-title::after {
-    content: ''; flex: 1; height: 0.5px; background: #B5D4F4;
+.section-icon { width: 28px; height: 28px; background: #185FA5; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.section-label { font-size: 14px; font-weight: 500; color: #0C447C; }
+
+/* ── Streamlit container as card body ── */
+[data-testid="stVerticalBlock"] > [data-testid="stVerticalBlockBorderWrapper"] {
+    background: #ffffff;
+    border: 0.5px solid #dbe8f5 !important;
+    border-top: none !important;
+    border-radius: 0 0 10px 10px !important;
+    padding: 1rem 1.25rem !important;
 }
 
-/* ── Cards ── */
-.card {
-    background: #fff; border-radius: 12px;
-    border: 0.5px solid #dbe8f5; overflow: hidden; margin-bottom: 14px;
-}
-.card-top {
-    background: #E6F1FB; padding: 10px 16px;
-    display: flex; align-items: center; gap: 8px;
-    border-bottom: 0.5px solid #B5D4F4;
-}
-.card-top-icon {
-    width: 22px; height: 22px; background: #185FA5;
-    border-radius: 5px; display: flex; align-items: center;
-    justify-content: center; font-size: 12px;
-}
-.card-top-label { font-size: 13px; font-weight: 600; color: #0C447C; }
-.card-body { padding: 16px; }
-.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-.field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 4px; }
-.field label { font-size: 12px; color: #5F5E5A; font-weight: 500; }
-
-/* ── Override Streamlit input styles ── */
-input[type="number"], select, .stSelectbox select {
+/* ── Input styling ── */
+[data-testid="stNumberInput"] input {
+    background: #f7fafd !important;
     border: 0.5px solid #c8d8ea !important;
     border-radius: 8px !important;
-    background: #f7fafd !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+    height: 44px !important;
 }
-.stSlider [data-baseweb="slider"] { padding-top: 6px; }
-div[data-baseweb="select"] > div {
+[data-baseweb="select"] > div {
+    background: #f7fafd !important;
     border: 0.5px solid #c8d8ea !important;
     border-radius: 8px !important;
-    background: #f7fafd !important;
+    min-height: 44px !important;
+}
+[data-testid="stNumberInput"] label,
+[data-testid="stSelectbox"] label,
+[data-testid="stSlider"] label {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #444441 !important;
+    margin-bottom: 4px !important;
+}
+
+/* ── Slider ── */
+[data-testid="stSlider"] [data-baseweb="slider"] [role="slider"] {
+    background: #185FA5 !important;
 }
 
 /* ── Predict button ── */
-.stButton button {
-    width: 100%; background: #185FA5 !important;
-    color: #E6F1FB !important; font-size: 16px !important;
-    font-weight: 600 !important; border: none !important;
-    border-radius: 10px !important; padding: 14px !important;
-    cursor: pointer !important;
+.stButton > button {
+    width: 100% !important;
+    background: #185FA5 !important;
+    color: #E6F1FB !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 14px !important;
+    margin-top: 8px !important;
+    height: auto !important;
 }
-.stButton button:hover { background: #0C447C !important; }
+.stButton > button:hover { background: #0C447C !important; }
 
 /* ── Result panel ── */
-.result-wrap {
-    border-radius: 12px; overflow: hidden;
-    border: 2px solid #1D9E75; margin-top: 1rem;
-}
-.result-hero {
-    background: #085041; padding: 1.5rem 1.5rem;
-    display: flex; align-items: center; justify-content: space-between;
-}
+.result-wrap { border-radius: 12px; overflow: hidden; border: 2px solid #1D9E75; margin-top: 1rem; }
+.result-top { background: #085041; padding: 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; }
 .result-label { font-size: 12px; color: #5DCAA5; margin-bottom: 6px; }
-.result-price { font-size: 40px; font-weight: 700; color: #E1F5EE; }
+.result-price { font-size: 40px; font-weight: 500; color: #E1F5EE; }
 .confidence-label { font-size: 11px; color: #5DCAA5; margin-bottom: 6px; text-align: right; }
-.confidence-bar-bg {
-    width: 130px; height: 6px; background: #0F6E56;
-    border-radius: 3px; overflow: hidden; margin-left: auto;
-}
+.confidence-bar-bg { width: 130px; height: 6px; background: #0F6E56;
+    border-radius: 3px; overflow: hidden; margin-left: auto; }
 .confidence-bar { height: 100%; width: 80%; background: #1D9E75; border-radius: 3px; }
-.confidence-pct { font-size: 14px; color: #9FE1CB; margin-top: 5px; font-weight: 600; text-align: right; }
-.result-stats {
-    background: #0F6E56;
-    display: grid; grid-template-columns: repeat(3, 1fr);
-}
+.confidence-pct { font-size: 14px; color: #9FE1CB; margin-top: 5px; font-weight: 500; text-align: right; }
+.result-stats { background: #0F6E56; display: grid; grid-template-columns: repeat(3, 1fr); }
 .rs { padding: 14px; text-align: center; border-right: 0.5px solid #085041; }
 .rs:last-child { border-right: none; }
-.rs-val { font-size: 16px; font-weight: 600; color: #9FE1CB; }
+.rs-val { font-size: 16px; font-weight: 500; color: #9FE1CB; }
 .rs-label { font-size: 11px; color: #5DCAA5; margin-top: 3px; }
-.result-footer {
-    background: #fff; padding: 10px 16px;
-    border-top: 0.5px solid #dbe8f5;
-}
+.result-footer { background: #fff; padding: 10px 16px; border-top: 0.5px solid #dbe8f5; }
 .result-note { font-size: 12px; color: #888780; text-align: center; }
 
 /* ── Footer ── */
-.footer {
-    background: #042C53; padding: 1rem 2rem; margin-top: 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-}
+.footer { background: #042C53; padding: 1rem 2rem; margin-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between; }
 .footer-left { font-size: 12px; color: #378ADD; }
 .footer-right { font-size: 12px; color: #185FA5; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Navbar ──────────────────────────────────────────────────────────
+# ── Navbar ───────────────────────────────────────────────────────────
 st.markdown("""
 <div class="navbar">
     <div class="nav-left">
@@ -184,10 +151,6 @@ st.markdown("""
         <span class="nav-tag">Model live</span>
     </div>
 </div>
-""", unsafe_allow_html=True)
-
-# ── Hero ─────────────────────────────────────────────────────────────
-st.markdown("""
 <div class="hero">
     <div class="hero-eyebrow">Powered by Random Forest</div>
     <div class="hero-title">California House Price Predictor</div>
@@ -205,57 +168,48 @@ st.markdown("""
     <div class="metric"><div class="metric-val">50</div><div class="metric-label">Decision trees</div></div>
     <div class="metric"><div class="metric-val">1990</div><div class="metric-label">Census year</div></div>
 </div>
-<div class="main">
+<div class="content-wrap">
 """, unsafe_allow_html=True)
 
 # ── Location ─────────────────────────────────────────────────────────
 st.markdown("""
-<div class="section-title">Location details</div>
-<div class="card">
-    <div class="card-top">
-        <div class="card-top-icon">📍</div>
-        <span class="card-top-label">Geographic coordinates</span>
-    </div>
-    <div class="card-body">
+<div class="section-header">
+    <div class="section-icon">📍</div>
+    <span class="section-label">Location details</span>
+</div>
 """, unsafe_allow_html=True)
-col1, col2 = st.columns(2)
-longitude = col1.number_input("Longitude", value=-119.57, format="%.4f")
-latitude  = col2.number_input("Latitude",  value=36.49,  format="%.4f")
-st.markdown("</div></div>", unsafe_allow_html=True)
+with st.container(border=True):
+    col1, col2 = st.columns(2)
+    longitude = col1.number_input("Longitude", value=-119.57, format="%.4f")
+    latitude  = col2.number_input("Latitude",  value=36.49,  format="%.4f")
 
 # ── Neighborhood ─────────────────────────────────────────────────────
 st.markdown("""
-<div class="section-title">Neighborhood info</div>
-<div class="card">
-    <div class="card-top">
-        <div class="card-top-icon">🏘️</div>
-        <span class="card-top-label">Area characteristics</span>
-    </div>
-    <div class="card-body">
+<div class="section-header">
+    <div class="section-icon">🏘️</div>
+    <span class="section-label">Neighborhood info</span>
+</div>
 """, unsafe_allow_html=True)
-col3, col4 = st.columns(2)
-ocean_proximity    = col3.selectbox("Ocean proximity", ['INLAND','NEAR BAY','NEAR OCEAN','<1H OCEAN','ISLAND'])
-housing_median_age = col4.slider("Housing median age (years)", 1, 52, 20)
-st.markdown("</div></div>", unsafe_allow_html=True)
+with st.container(border=True):
+    col3, col4 = st.columns(2)
+    ocean_proximity    = col3.selectbox("Ocean proximity", ['INLAND','NEAR BAY','NEAR OCEAN','<1H OCEAN','ISLAND'])
+    housing_median_age = col4.slider("Housing median age (years)", 1, 52, 20)
 
 # ── Population & Rooms ───────────────────────────────────────────────
 st.markdown("""
-<div class="section-title">Population & housing</div>
-<div class="card">
-    <div class="card-top">
-        <div class="card-top-icon">👥</div>
-        <span class="card-top-label">Demographics & rooms</span>
-    </div>
-    <div class="card-body">
+<div class="section-header">
+    <div class="section-icon">👥</div>
+    <span class="section-label">Population & housing</span>
+</div>
 """, unsafe_allow_html=True)
-col5, col6, col7 = st.columns(3)
-population     = col5.number_input("Population",    value=1500, step=100)
-households     = col6.number_input("Households",    value=500,  step=10)
-total_rooms    = col7.number_input("Total rooms",   value=2000, step=100)
-col8, col9 = st.columns(2)
-total_bedrooms = col8.number_input("Total bedrooms", value=400, step=10)
-median_income  = col9.slider("Median income (×$10k)", 0.5, 15.0, 4.0, step=0.1)
-st.markdown("</div></div>", unsafe_allow_html=True)
+with st.container(border=True):
+    col5, col6, col7 = st.columns(3)
+    population  = col5.number_input("Population",    value=1500, step=100)
+    households  = col6.number_input("Households",    value=500,  step=10)
+    total_rooms = col7.number_input("Total rooms",   value=2000, step=100)
+    col8, col9  = st.columns(2)
+    total_bedrooms = col8.number_input("Total bedrooms", value=400, step=10)
+    median_income  = col9.slider("Median income (×$10k)", 0.5, 15.0, 4.0, step=0.1)
 
 # ── Predict ──────────────────────────────────────────────────────────
 def preprocess_input(data):
@@ -279,10 +233,9 @@ if st.button("→  Estimate house price"):
         'median_income': median_income, 'ocean_proximity': ocean_proximity
     }
     prediction = model.predict(preprocess_input(input_data))[0]
-
     st.markdown(f"""
     <div class="result-wrap">
-        <div class="result-hero">
+        <div class="result-top">
             <div>
                 <div class="result-label">Estimated median house value</div>
                 <div class="result-price">${prediction:,.0f}</div>
