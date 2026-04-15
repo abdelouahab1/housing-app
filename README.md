@@ -3,7 +3,7 @@
 A machine learning web app that predicts California median house prices based on neighborhood features.
 
 ## Live Demo
-🔗 [homesense-ai.streamlit.app](https://abdelouahab1-housing-app-main-app.streamlit.app)
+🔗 [[homesense-ai.streamlit.app](https://abdelouahab1-housing-app-main-app.streamlit.app)](https://housing-app-california.streamlit.app/)
 
 ## Overview
 This app uses a **Random Forest Regressor** trained on the 1990 California Housing dataset to predict median house values based on 9 input features.
